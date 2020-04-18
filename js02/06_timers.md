@@ -25,4 +25,4 @@ parar.onclick = function(){
 }
 ```
 #### Menu
-[1](/01_closures_callbacks.md) - [2](/02_arrays.md) - [3](/03_editar_dom.md) - [4](/04_clases.md) - [5](/05_eventos.md) - [6](/06_timers.md)
+[1](/js02/01_closures_callbacks.md) - [2](/js02/02_arrays.md) - [3](/js02/03_editar_dom.md) - [4](/js02/04_clases.md) - [5](/js02/05_eventos.md) - [6](/js02/06_timers.md)
