@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Forms</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label>Nombre:</label>
+            <input type="text" name="nombre" id="nombre">
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div>
+            <input type="submit" value="Enviar">
+        </div>
+    </form>
+    <script>
+        window.onload = function(){
+            
+            let campoNombre = document.querySelector("[name=nombre]");
+            campoNombre.addEventListener('change', function () {
+                alert('Gracias por dejar tu nombre');
+            });
+            let campoEmail = document.querySelector('[name=email]');
+            campoEmail.addEventListener('change', function () {
+                alert('Gracias por dejar tu email');
+            });
+
+            let form = document.querySelector('form');
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                alert('Gracias!');
+                // Procesamiento de formularios
+                if (campoNombre.value == "") {
+                    alert('Dejaste el campo nombre vacio')
+                }
+                if (campoEmail.value == "") {
+                    alert('Dejaste el campo email vacio')
+                }
+            })
+
+            console.log(form.elements)
+
+        }
+    </script>
+</body>
+
+</html>

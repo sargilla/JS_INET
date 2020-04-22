@@ -8,12 +8,19 @@
 <body>
     <h1>Tipos de Pokemon!</h1>
     <section class="principal">
-        <ul>
+        <ul class="tipos">
     
+        </ul>
+        <p></p>
+        <ul class="ataques">
+        
         </ul>
     </section>
     <h1>Códigos de paises</h1>
-    <p></p>
+    <div class="ciudades">
+    
+        <p></p>
+    </div>
     <script>
         window.onload = function () {
 
@@ -31,7 +38,7 @@
                     // let stringCodes = arrayCodes.toString();
                     // p.append(stringCodes)
 
-                    document.querySelector('p').append(data.map(pais => pais.alpha2Code).toString())
+                    document.querySelector('.ciudades p').append(data.map(pais => pais.alpha2Code).toString())
                   
                 })
                 .catch(function (error) {
@@ -50,14 +57,42 @@
                     // console.log(ul, tipos)
 
                     tipos.forEach(tipo => {
-                        let li = document.createElement('li')
-                        li.append(tipo.name)
-                        ul.append(li)
-
-                        /* Para playground */
-                        // let li = '<li>' + tipo.name + '</li>'
-                        // ul.innerHTML = ul.innerHTML + li
+                        ul.innerHTML += "<li url='" + tipo.url + "'>" + tipo.name + "</li>"
                     })
+
+                    /* Ejercicio 2 y 3*/
+                    
+                    let lis = document.querySelectorAll('.tipos li');
+                    let p = document.querySelector('p')
+
+            
+
+                    p.style.color = 'Red'
+                    lis.forEach(li=>{
+                        li.onclick = function(){
+                            p.innerHTML = this.innerHTML + ": " + this.getAttribute('url')
+                            /*  Ejercicio 4  */
+                            fetch(this.getAttribute('url'))
+                                .then(response => response.json())
+                                .then(json => {
+                                    let ulAtaques = document.querySelector('.ataques');
+                                    ulAtaques.innerHTML = '';
+                                    let moves =  json.moves
+                                    for (var i = 0; i < moves.length; i++) {
+                                        ulAtaques.innerHTML += "<li>"+ moves[i].name + "</li>";
+                                    }                                  
+                                })
+
+                        }
+                    })
+                    
+                    /* Para playground */
+                    // for (var i = 0; i < lis.length; i++) {
+                    //     lis[i].addEventListener("click", function () {
+                    //         document.querySelector("p").innerHTML = this.innerHTML + ": " + this.getAttribute('url');
+                    //     });
+                    // }  
+
                 }).catch(function (error) {
                     // console.log(error.message);
                     let body = document.querySelector('body')
