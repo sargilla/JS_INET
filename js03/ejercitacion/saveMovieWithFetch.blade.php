@@ -25,11 +25,11 @@
 						</div>
 						<div class="form-group">
 							<label>Rating:</label>
-							<input type="text" name="rating" class="form-control">
+							<input type="number" name="rating" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>Awards:</label>
-							<input type="text" name="awards" class="form-control">
+							<input type="number" name="awards" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>Release date:</label>

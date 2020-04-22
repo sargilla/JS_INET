@@ -28,6 +28,7 @@ string.match(/e./g)
 ``` 
 [Guia Expresiones Regulares](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions)
 [Pagina Expresiones Regulares](https://www.regular-expressions.info/)
+[Diego.com.es](https://diego.com.es/expresiones-regulares-en-php)
 
 ## .slice()
 Nos da una tajada de un texto o array,
