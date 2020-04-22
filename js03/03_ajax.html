@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de playground</title>
+</head>
+<body>
+    <h1>Tipos de Pokemon!</h1>
+    <section class="principal">
+        <ul>
+    
+        </ul>
+    </section>
+    <h1>Códigos de paises</h1>
+    <p></p>
+    <script>
+        window.onload = function () {
+
+            // Paises
+            fetch('https://restcountries.eu/rest/v2/all')
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (data) {
+                    /* Forma larga */
+                    // let p =   document.querySelector('p')
+                    // let arrayCodes = data.map(function(pais){
+                    //    return pais.alpha2Code;
+                    // });
+                    // let stringCodes = arrayCodes.toString();
+                    // p.append(stringCodes)
+
+                    document.querySelector('p').append(data.map(pais => pais.alpha2Code).toString())
+                  
+                })
+                .catch(function (error) {
+                    return console.error(error.message)
+                })
+            // Ejercicio Playground
+            fetch("https://pokeapi.co/api/v2/type/")
+                .then(function (response) {
+                    // console.log(response)
+                    return response.json();
+                })
+                .then(function (json) {
+                    // console.log(json)
+                    tipos = json.results
+                    let ul = document.querySelector('.principal ul');
+                    // console.log(ul, tipos)
+
+                    tipos.forEach(tipo => {
+                        let li = document.createElement('li')
+                        li.append(tipo.name)
+                        ul.append(li)
+
+                        /* Para playground */
+                        // let li = '<li>' + tipo.name + '</li>'
+                        // ul.innerHTML = ul.innerHTML + li
+                    })
+                }).catch(function (error) {
+                    // console.log(error.message);
+                    let body = document.querySelector('body')
+                    let ul = document.querySelector('.principal ul');
+                    let h3 = document.createElement('h3')
+                    h3.style.color = 'red'
+                    h3.innerHTML = 'No se pudo recuperar la informacion'
+                    ul.after(h3)
+                    ul.remove()
+                });
+        };
+     
+    </script>
+    
+</body>
+</html>
+

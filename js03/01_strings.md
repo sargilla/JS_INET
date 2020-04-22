@@ -66,10 +66,15 @@ var numberString = number.toString();
 ## Ejercicio Playground
 ```js
 function stringBomb(unTexto) {
-  return unTexto.split(",").map(palabra => palabra.trim().replace("ñ", "n")).filter(palabra => palabra.length > 3 && palabra.indexOf("a") != -1).toString();
+  return unTexto.split(",")
+      .map(palabra => palabra.trim().replace("ñ", "n"))
+      .filter(palabra => palabra.length > 3 && palabra.indexOf("a") != -1)
+      .toString();
 }
 
 let string = unTexto = "Dario, Alejandro, Javier , Carolina, Camila , Santiago, De    , Cheryll, Mañana";
 
 console.log(stringBomb(string))
 ```
+### Menu
+[1](/js03/01_strings.md) - [2](/js03/02_json.md) - [3](/js03/03_ajax.md) - [4](/js03/04_forms.md)
