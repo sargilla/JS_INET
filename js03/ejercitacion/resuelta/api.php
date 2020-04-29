@@ -22,13 +22,17 @@ Route::get('getMovies', function () {
 
 Route::post('movies', function (){
 
-    $validator = Validator::make(request()->all(), [
-          'title'=>'required|min:5'
-    ]);
+    // $validator = Validator::make(request()->all(), [
+    //       'title'=>'required|min:5'
+    // ]);
 
-    if ($validator->fails()) {
-        return response([$validator->messages()], 416);
-    }
+    // if ($validator->fails()) {
+    //     return response([$validator->messages()], 416);
+    // }
+
+    request()->validate([
+        'title'=>'required|min:5'
+    ]);
 
     $pelicula = \App\Movie::create(request()->all());
 

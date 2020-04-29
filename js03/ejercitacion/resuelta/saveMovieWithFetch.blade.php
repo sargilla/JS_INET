@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-
-<head>
-    <meta charset="utf-8">
-    {{-- Necesario para poder enviar DATA vía fetch --}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Fetch Laravel</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <style>
-        .error {
-            border-color: red;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <h2>Total de películas: <span></span></h2>
-                <!-- En este listado se cargarán las películas que vengan de la consulta asíncrona -->
-                <ul class="list-group"></ul>
-            </div>
-            <div class="col-4">
-                <h2>Dar de alta una película</h2>
-                <form method="post" enctype="multipart/form-data" id="form">
-                    @csrf
-                    <div class="form-group">
-                        <label>Title:</label>
-                        <input type="text" name="title" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Revenue:</label>
-                        <input type="text" name="revenue" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Awards:</label>
-                        <input type="number" name="awards" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Release date:</label>
-                        <input type="date" name="release_date" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-success">GUARDAR</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <script>
-        function actualizarPeliculas() {
+	<head>
+		<meta charset="utf-8">
+		{{-- Necesario para poder enviar DATA vía fetch --}}
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<title>Fetch Laravel</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <style>
+            .error {
+                border-color: red;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-8">
+					<h2>Total de películas: <span></span></h2>
+					<!-- En este listado se cargarán las películas que vengan de la consulta asíncrona -->
+					<ul class="list-group"></ul>
+				</div>
+				<div class="col-4">
+					<h2>Dar de alta una película</h2>
+					<form method="post" enctype="multipart/form-data" id="form">
+						@csrf
+						<div class="form-group">
+							<label>Title:</label>
+							<input type="text" name="title" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Revenue:</label>
+							<input type="text" name="revenue" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Awards:</label>
+							<input type="number" name="awards" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Release date:</label>
+							<input type="date" name="release_date" class="form-control">
+						</div>
+						<button type="submit" class="btn btn-success">GUARDAR</button>
+					</form>
+				</div>
+			</div>
+		</div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+		<script>
+            function actualizarPeliculas() {
                 fetch('api/getMovies')
                     .then(response => response.json())
                     .then(data => {
@@ -97,15 +95,17 @@
                         if(element.value == ""){
                             errores++
                         }
-
                     })
 
                     let data = new FormData(form);
                     if(!errores){
                         fetch('api/movies', {
                             method: 'POST',
-                            body: data ,
-                            headers: {'X-CSRF-TOKEN': header} // Para enviar data via fetch
+                            body: data,
+                            headers: {
+                                'X-CSRF-TOKEN': header,
+                                'Accept': 'application/json'
+                            } // Para enviar data via fetch
 
                         }).then(response => {
                             if (!response.ok) {
@@ -124,9 +124,9 @@
                         })
                         .catch(error => {
                             swal({
-                            icon: 'error',
-                            title: error,
-                            text: 'Llena bien el form!',
+                                icon: 'error',
+                                title: error,
+                                text: 'Llena bien el form!',
                             })
                         });
                     } else {
@@ -139,6 +139,6 @@
                     }
                 }
             }
-    </script>
-</body>
+		</script>
+	</body>
 </html>
